@@ -9,7 +9,7 @@ unsigned __rand()
     unsigned ret;
     HCRYPTPROV hProvider;
     CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
-    CryptGenRandom(hProvider, 4, (BYTE *)&ret);
+    CryptGenRandom(hProvider, sizeof(ret), (BYTE *)&ret);
     CryptReleaseContext(hProvider, 0);
     return ret;
 }
