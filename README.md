@@ -2,7 +2,7 @@
 一个用来给22班随机排座位表的程序。因为他们班的同学认为@hr567的程序有问题，随机的不好，就让我来重写一个。
 
 现在seat.cpp已经实现seat_hr.cpp中的所有功能并且有着更好的随机性。
-seat.cpp使用CryptGenRandom(Windows)或是/dev/random(unix-like)产生的高质量的随机数种子来初始化mt19937，达到了比srand/rand更好的随机性。
+seat.cpp使用CryptGenRandom(Windows)或是/dev/random(unix-like)产生的高质量的随机数种子来初始化mt19937，达到了比srand(time(0))+rand()更好的随机性。
 
 已实现的原有功能如下
 - 把lcy放到第二排
