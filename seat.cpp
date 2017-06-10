@@ -1,18 +1,36 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
+#include <random>
 using namespace std;
+#ifdef _MSC_VER
+#include <Windows.h>
+unsigned __rand()
+{
+    unsigned ret;
+    HCRYPTPROV hProvider;
+    CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
+    CryptGenRandom(hProvider, 4, (BYTE *)&ret);
+    CryptReleaseContext(hProvider, 0);
+    return ret;
+}
+#else
+unsigned __rand()
+{
+    FILE *fd = fopen("/dev/random", "r");
+    unsigned ret;
+    fread(&ret, sizeof(ret), 1, fd);
+    fclose(fd);
+    return ret;
+}
+#endif
 int num[49];
 int main()
 {
     freopen("out.txt", "w", stdout);
-    puts("门————————————————————————————————————————————————窗");
-    srand(time(0));
+    mt19937 gen(__rand());
     for (int i = 0; i < 49; i++) num[i] = i + 1;
-    random_shuffle(num, num + 49);
-    int pos = 0;
-    while (num[pos] != 20) pos++;
-    pos = 0;
-    int pos2 = ((rand() + 42) & 7) + 8;
-    swap(num[pos], num[pos2]);
+    shuffle(num, num + 49, gen);
+    swap(num[gen() & 7 | 8], *find(num, num + 49, 20));
     for (int i = 0; i < 6; i++, putchar('\n'))
         for (int j = 0; j < 8; j++, putchar(' '))
             printf("%2d", num[i << 3 | j]);
