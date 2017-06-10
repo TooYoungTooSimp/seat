@@ -2,6 +2,27 @@
 #include <cstdio>
 #include <random>
 using namespace std;
+mt19937 __get_random_engine();
+int num[49];
+#define numRange num, num + 49
+#define lcy 20
+#define wzr 22
+#define lyc 48
+int main()
+{
+    freopen("out.txt", "w", stdout);
+    mt19937 gen = __get_random_engine();
+    for (int i = 0; i < 49; i++) num[i] = i + 1;
+    shuffle(numRange, gen);
+    iter_swap(find(numRange, lcy), &num[(gen() & 7) | 8]);
+    iter_swap(find(numRange, wzr), &num[(find(numRange, lcy) - num) ^ 1]);
+    iter_swap(find(numRange, wzr), find(numRange, lyc));
+    iter_swap(find(numRange, wzr), num + 48);
+    for (int i = 0; i < 6; i++, putchar('\n'))
+        for (int j = 0; j < 8; j++, putchar(' '))
+            printf("%2d", num[i << 3 | j]);
+    return 0;
+}
 #ifdef _WIN32
 #include <Windows.h>
 #pragma comment(lib, "advapi32.lib")
@@ -24,23 +45,3 @@ mt19937 __get_random_engine()
     return mt19937(__seed);
 }
 #endif
-int num[49];
-#define numRange num, num + 49
-#define lcy 20
-#define wzr 22
-#define lyc 48
-int main()
-{
-    freopen("out.txt", "w", stdout);
-    mt19937 gen = __get_random_engine();
-    for (int i = 0; i < 49; i++) num[i] = i + 1;
-    shuffle(numRange, gen);
-    iter_swap(find(numRange, lcy), &num[(gen() & 7) | 8]);
-    iter_swap(find(numRange, wzr), &num[(find(numRange, lcy) - num) ^ 1]);
-    iter_swap(find(numRange, wzr), find(numRange, lyc));
-    iter_swap(find(numRange, wzr), num + 48);
-    for (int i = 0; i < 6; i++, putchar('\n'))
-        for (int j = 0; j < 8; j++, putchar(' '))
-            printf("%2d", num[i << 3 | j]);
-    return 0;
-}
