@@ -31,6 +31,9 @@ int main()
     for (int i = 0; i < 49; i++) num[i] = i + 1;
     shuffle(num, num + 49, gen);
     swap(num[gen() & 7 | 8], *find(num, num + 49, 20));
+    swap(*find(num, num + 49, 26), num[(find(num, num + 49, 20) - num) ^ 1]);
+    iter_swap(find(num, num + 49, 26), find(num, num + 49, 48));
+    iter_swap(find(num, num + 49, 26), num + 48);
     for (int i = 0; i < 6; i++, putchar('\n'))
         for (int j = 0; j < 8; j++, putchar(' '))
             printf("%2d", num[i << 3 | j]);
