@@ -4,11 +4,12 @@
 using namespace std;
 #ifdef _MSC_VER
 #include <Windows.h>
+#pragma comment(lib, "advapi32.lib")
 unsigned __rand()
 {
     unsigned ret;
     HCRYPTPROV hProvider;
-    CryptAcquireContextW(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
+    CryptAcquireContext(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
     CryptGenRandom(hProvider, sizeof(ret), (BYTE *)&ret);
     CryptReleaseContext(hProvider, 0);
     return ret;
