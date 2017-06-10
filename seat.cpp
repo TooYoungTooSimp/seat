@@ -5,9 +5,7 @@ using namespace std;
 mt19937 __get_random_engine();
 int num[49];
 #define numRange num, num + 49
-#define lcy 20
-#define wzr 22
-#define lyc 48
+const int lcy = 20, wzr = 22, lyc = 48;
 int main()
 {
     freopen("out.txt", "w", stdout);
