@@ -2,26 +2,26 @@
 #include <cstdio>
 #include <random>
 using namespace std;
-#ifdef _MSC_VER
+#ifdef _WIN32
 #include <Windows.h>
 #pragma comment(lib, "advapi32.lib")
-unsigned __rand()
+mt19937 __get_random_engine()
 {
-    unsigned ret;
+    unsigned __seed;
     HCRYPTPROV hProvider;
     CryptAcquireContext(&hProvider, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
-    CryptGenRandom(hProvider, sizeof(ret), (BYTE *)&ret);
+    CryptGenRandom(hProvider, sizeof(__seed), (BYTE *)&__seed);
     CryptReleaseContext(hProvider, 0);
-    return ret;
+    return mt19937(__seed);
 }
 #else
-unsigned __rand()
+mt19937 __get_random_engine()
 {
-    unsigned ret;
+    unsigned __seed;
     FILE *fd = fopen("/dev/random", "r");
-    fread(&ret, sizeof(ret), 1, fd);
+    fread(&__seed, sizeof(__seed), 1, fd);
     fclose(fd);
-    return ret;
+    return mt19937(__seed);
 }
 #endif
 int num[49];
@@ -31,7 +31,7 @@ int num[49];
 int main()
 {
     freopen("out.txt", "w", stdout);
-    mt19937 gen(__rand());
+    mt19937 gen = __get_random_engine();
     for (int i = 0; i < 49; i++) num[i] = i + 1;
     shuffle(num, num + 49, gen);
     swap(num[(gen() & 7) | 8], *find(num, num + 49, lcy));
