@@ -16,8 +16,8 @@ unsigned __rand()
 #else
 unsigned __rand()
 {
-    FILE *fd = fopen("/dev/random", "r");
     unsigned ret;
+    FILE *fd = fopen("/dev/random", "r");
     fread(&ret, sizeof(ret), 1, fd);
     fclose(fd);
     return ret;
