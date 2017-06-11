@@ -1,5 +1,4 @@
-# seat 
-![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-2.png) [![Build Status](https://travis-ci.org/TooYoungTooSimp/seat.svg?branch=master)](https://travis-ci.org/TooYoungTooSimp/seat)
+# seat [![Build Status](https://travis-ci.org/TooYoungTooSimp/seat.svg?branch=master)](https://travis-ci.org/TooYoungTooSimp/seat)
 
 一个用来给22班随机排座位表的程序。因为他们班的同学认为@hr567的程序有问题，随机的不好，就让我来重写一个。
 
