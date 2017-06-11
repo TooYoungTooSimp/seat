@@ -90,8 +90,8 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
 
-    # works on Trusty
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
@@ -101,8 +101,8 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
-    # works on Trusty
     - os: linux
+      dist: trusty
       addons:
         apt:
           sources:
