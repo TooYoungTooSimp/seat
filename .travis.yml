@@ -114,4 +114,4 @@ matrix:
 
 script:
     - eval "${MATRIX_EVAL}"
-    - CXX -std=c++11 seat.cpp -o seat
+    - $CXX -std=c++11 seat.cpp -o seat
