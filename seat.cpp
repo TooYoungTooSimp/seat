@@ -5,11 +5,11 @@ using namespace std;
 mt19937 __get_random_engine();
 int num[49];
 char name[50][9];
-#define numRange num, num + 49
+#define numRange begin(num), end(num)
 const int lcy = 20, wzr = 26, lyc = 49, yyl = 48, hr = 8;
 int main(int argc, char **argv)
 {
-    FILE *iS, *oS;
+    FILE *iS = 0, *oS = 0;
     if (argc == 1) iS = stdin, oS = stdout;
     if (argc == 2) iS = fopen(argv[1], "r"), oS = stdout;
     if (argc == 3) iS = fopen(argv[1], "r"), oS = fopen(argv[2], "w");
@@ -22,10 +22,11 @@ int main(int argc, char **argv)
     iter_swap(find(numRange, wzr), &num[(find(numRange, lcy) - num) ^ 1]);
     iter_swap(find(numRange, yyl), &num[(find(numRange, hr) - num) ^ 1]);
     iter_swap(find(numRange, wzr), find(numRange, lyc));
-    iter_swap(find(numRange, wzr), num + 48);
+    iter_swap(find(numRange, wzr), rbegin(num));
     for (int i = 0; i < 6; i++, fputc('\n', oS))
         for (int j = 0; j < 8; j++, fputc(' ', oS))
             fprintf(oS, "%-8s%c", name[num[i << 3 | j]], " |"[j & 1]);
+    fclose(iS), fclose(oS);
     return 0;
 }
 #ifdef _WIN32
