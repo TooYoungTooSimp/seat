@@ -41,6 +41,7 @@ mt19937 __get_random_engine()
     return mt19937(__seed);
 }
 #else
+#include <ctime>
 mt19937 __get_random_engine()
 {
     unsigned __seed;
