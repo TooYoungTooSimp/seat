@@ -44,9 +44,10 @@ mt19937 __get_random_engine()
 mt19937 __get_random_engine()
 {
     unsigned __seed;
-    FILE *fd = fopen("/dev/random", "r");
-    fread(&__seed, sizeof(__seed), 1, fd);
-    fclose(fd);
+    if (FILE *fd = fopen("/dev/random", "r"))
+        fread(&__seed, sizeof(__seed), 1, fd), fclose(fd);
+    else
+        __seed = time(0);
     return mt19937(__seed);
 }
 #endif
