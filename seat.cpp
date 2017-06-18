@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     iter_swap(find(numRange, wzr), &num[(find(numRange, lcy) - num) ^ 1]);
     iter_swap(find(numRange, yyl), &num[(find(numRange, hr) - num) ^ 1]);
     iter_swap(find(numRange, wzr), find(numRange, lyc));
-    iter_swap(find(numRange, wzr), rbegin(num));
+    iter_swap(find(numRange, wzr), end(num) - 1);
     for (int i = 0; i < 6; i++, fputc('\n', oS))
         for (int j = 0; j < 8; j++, fputc(' ', oS))
             fprintf(oS, "%-8s%c", name[num[i << 3 | j]], " |"[j & 1]);
