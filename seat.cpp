@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     //display
     for (int i = 0; i < 6; i++, fputs("|\n", rStream))
         for (int j = 0; j < 8; j++)
-            fprintf(rStream, "%s%-8s", "| " + (j & 1), name[res[i << 3 | j]]);
+            fprintf(rStream, "%s%-8s", &"| "[j & 1], name[res[i << 3 | j]]);
     fclose(nStream), fclose(fStream), fclose(rStream);
     return 0;
 }
