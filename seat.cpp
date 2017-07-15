@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     shuffle(res.begin(), res.end(), gen);
     shuffle(fixed.begin(), fixed.end(), gen);
     for (vector<pair<int, int>>::iterator ite = fixed.begin(); ite != fixed.end(); ++ite)
-        if (gen()) swap(ite->first, ite->second);
+        if (gen() & 1) swap(ite->first, ite->second);
     //special
     iter_swap(find(res.begin(), res.end(), 48), &res[(find(res.begin(), res.end(), 8) - res.begin()) ^ 1]);
     iter_swap(find_if(fixed.begin(), fixed.end(), [](pair<int, int> &p) { return min(p.first, p.second) == 20; }), fixed.begin() + 2 + (gen() & 1));
