@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     }
     FILE *nStream, *fStream, *rStream;
     nStream = fopen(argv[1], "r"), fStream = fopen(argv[2], "r");
-    rStream = argc == 4 ? fopen(argv[3], "r") : stdout;
+    rStream = argc == 4 ? fopen(argv[3], "w") : stdout;
     array<char[9], 50> name;
     vector<int> res;
     vector<pair<int, int>> fixed;
