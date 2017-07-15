@@ -19,9 +19,10 @@ int main(int argc, char **argv)
     FILE *nStream, *fStream, *rStream;
     nStream = fopen(argv[1], "r"), fStream = fopen(argv[2], "r");
     rStream = argc == 4 ? fopen(argv[3], "r") : stdout;
-    vector<int> res;
     array<char[9], 50> name;
+    vector<int> res;
     vector<pair<int, int>> fixed;
+    fixed.reserve(12), res.reserve(24);
     //read
     for (int id; ~fscanf(nStream, "%d", &id);) fscanf(nStream, "%s", name[id]);
     for (int x, y; ~fscanf(fStream, "%d%d", &x, &y);) fixed.push_back(make_pair(x, y));
@@ -38,12 +39,12 @@ int main(int argc, char **argv)
             H[ite->first] = H[ite->second] = true;
     //generate
     mt19937 gen = __get_random_engine();
-    for (int i = 1; i <= 48; i++)
-        if (!H[i]) res.push_back(i);
-    shuffle(res.begin(), res.end(), gen);
     shuffle(fixed.begin(), fixed.end(), gen);
     for (vector<pair<int, int>>::iterator ite = fixed.begin(); ite != fixed.end(); ++ite)
         if (gen() & 1) swap(ite->first, ite->second);
+    for (int i = 1; i <= 48; i++)
+        if (!H[i]) res.push_back(i);
+    shuffle(res.begin(), res.end(), gen);
     //special
     iter_swap(find(res.begin(), res.end(), 48), &res[(find(res.begin(), res.end(), 8) - res.begin()) ^ 1]);
     iter_swap(find_if(fixed.begin(), fixed.end(), [](pair<int, int> &p) { return min(p.first, p.second) == 20; }), fixed.begin() + 2 + (gen() & 1));
