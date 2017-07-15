@@ -46,7 +46,7 @@ int main(int argc, char **argv)
         if (gen()) swap(ite->first, ite->second);
     //special
     iter_swap(find(res.begin(), res.end(), 48), &res[(find(res.begin(), res.end(), 8) - res.begin()) ^ 1]);
-    iter_swap(find_if(fixed.begin(), fixed.end(), [](pair<int, int> &p) { return min(p.first, p.second) == 20; }), fixed.begin() + (gen() & 1 | 3));
+    iter_swap(find_if(fixed.begin(), fixed.end(), [](pair<int, int> &p) { return min(p.first, p.second) == 20; }), fixed.begin() + 2 + (gen() & 1));
     //display
     for (int i = 0; i < 6; i++, fputs("|\n", rStream))
     {
