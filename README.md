@@ -17,5 +17,5 @@ seat.cpp使用CryptGenRandom(Windows)或是/dev/random(unix-like)产生的高质
 
 于是实现新功能：按照给定的固定同桌表安排一些人，剩下的人随机分配。
 
-##Update 20170715
+## Update 20170715
 固定同桌表的方式进行了更新，直接重写算了
