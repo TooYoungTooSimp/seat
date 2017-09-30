@@ -1,3 +1,5 @@
+# 因为我回到了自己的班上，此项目停止更新。请22班的同学使用[这个](https://github.com/hr567/seating-chart)作为替代。
+
 # seat [![Build Status](https://travis-ci.org/TooYoungTooSimp/seat.svg?branch=master)](https://travis-ci.org/TooYoungTooSimp/seat)
 
 一个用来给22班随机排座位表的程序。因为他们班的同学认为@hr567的程序有问题，随机的不好，就让我来重写一个。
