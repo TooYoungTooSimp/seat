@@ -102,17 +102,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
-    - os: linux
-      dist: trusty
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty
-          packages:
-            - clang-5.0
-      env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-
 script:
     - eval "${MATRIX_EVAL}"
     - $CXX -std=c++11 seat.cpp -o seat
